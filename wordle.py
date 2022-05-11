@@ -1,55 +1,12 @@
 import random
+from messages import messages
+from config import config
 from colorama import Fore
-from dotenv import dotenv_values
-
-config = dotenv_values(".env")  # I know there are better ways to do config files
 
 
-words = [
-    "panda",
-    "thank",
-    "elbow",
-    "float",
-    "brown",
-    "money",
-    "thorn",
-    "child",
-    "spray",
-    "donor",
-    "month",
-    "tight",
-    "knife",
-    "handy",
-    "eagle",
-    "begin",
-    "reach",
-    "light",
-    "small",
-    "mouse",
-    "house",
-    "power",
-    "farce",
-    "candy",
-    "honey",
-    "cabin",
-    "cable",
-    "kabab",
-    "karma",
-    "daddy",
-    "faces",
-    "eager",
-    "hacks",
-    "robot",
-    "pluto",
-    "tabby",
-    "puppy",
-    "kitty",
-    "yacht",
-    "hippo",
-    "farts",
-    "boxes",
-    "river",
-]
+wordsFile = open("./words.txt")
+words = wordsFile.read().split("\n")
+
 
 tries = int(config["TRIES"])
 print("You have", tries, "tries")
@@ -57,8 +14,8 @@ print("You have", tries, "tries")
 word = random.choice(words)
 
 guesses = 0
-if config["SHOW_ANSWER"] == "True":
-    print(word)
+if config["SHOW_ANSWER"] == True:
+    print("Word:", word)
 
 
 def Convert(string):
@@ -84,7 +41,7 @@ def prAns(input):
         print("The word was", word)
         exit()
     if len(input) != 5:
-        print("Must be 5 characters long")
+        print(messages['NOT_VALID_LENGTH'])
         promptUser()
         return
     userWord1 = Convert(input)

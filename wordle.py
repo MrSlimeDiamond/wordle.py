@@ -41,7 +41,7 @@ def prAns(input):
         print("The word was", word)
         exit()
     if len(input) != 5:
-        print(messages['NOT_VALID_LENGTH'])
+        print(messages['INVALID_LENGTH'])
         promptUser()
         return
     userWord1 = Convert(input)

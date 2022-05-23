@@ -26,7 +26,7 @@ def Convert(string):
 
 def promptUser():
     global userWord
-    userWord = input("Place your guess: ").strip().lower()
+    userWord = input("Place your guess (" + str(guesses + 1) + "/" + str(tries) + "): ").strip().lower()
     prAns(userWord)
 
 
@@ -36,10 +36,6 @@ def addGuess():
 
 
 def prAns(input):
-    if guesses == tries and input != word:
-        print("You failed!")
-        print("The word was", word)
-        exit()
     if len(input) != 5:
         print(messages['INVALID_LENGTH'])
         promptUser()
@@ -133,6 +129,10 @@ def prAns(input):
     global isCorrect
     isCorrect = correct0 and correct1 and correct2 and correct3 and correct4
     addGuess()
+    if guesses == tries and input != word:
+        print("You failed!")
+        print("The word was", word)
+        exit()
 
 
 promptUser()
